@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <a class="text-decoration-none" href="{% url 'login' %}">Войти</a>
+    <a class="text-decoration-none" href="{% url 'home' %}">Главная</a>
+
+    <h1>Регистрация</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Зарегистрироваться">
+    </form>
+{% endblock %}

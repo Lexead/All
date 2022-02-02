@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }}{% endblock title %}
+{% block content %}
+<div class="d-flex justify-content-start my-4">
+  <span class="d-flex flex-column mx-4">
+    <h1><b>{{ product.title }}</b> <sub class="text-muted ">{{ product.category }}</sub></h1>
+    <div class="fotorama" data-loop="true" data-width="500" data-height="500"
+    data-nav="thumbs" data-autoplay="3000" data-allowfullscreen="true">
+      {% for image in product.images.all %}
+        <img src="{{ image.image.url }}" class="d-block w-100" style="object-fit: contain;" alt="...">
+      {% endfor %}
+    </div>
+  </span>
+  <span class="d-flex flex-column mx-4">
+    <h1><strong>{{ product.price }} BYN</strong></h1>
+    <form class="d-flex flex-column" style="width: 15em;" action="{% url "cart_add" product.pk %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input class="btn btn-primary my-1" type="submit" value="Добавить в корзину">
+    </form>
+    <img src="{{ product.brand.logo.url }}" width="100" alt="product.brand.title">
+    <div class="d-flex flex-column justify-content-start my-4">
+      <h2><b>Описание</b></h2>
+      {% if product.description %}
+        <p>{{ product.description }}</p>
+      {% else %}
+        <p>Отсутствует.</p>
+      {% endif %}
+    </div>
+  </span>
+</div>
+{% endblock content %}

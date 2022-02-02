@@ -1,0 +1,22 @@
+.product-list {
+    & > .product-item {
+        margin: 1rem 0.2rem;
+        width: 10rem;
+    }
+
+    & > .card {
+        &:hover {
+            border: 1px solid #0d6efd;
+        }
+
+        & > img.card-img-top {
+            height: 10em;
+            object-fit: contain;
+        }
+    }
+}
+
+.search {
+    min-width: 15em;
+    width: 50%;
+}

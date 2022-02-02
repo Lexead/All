@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Каталог{% endblock title %}
+{% block content %}
+    {% if products %}
+        <h1 class="text-center mt-3">Результаты поиска</h1>
+        <div class="product-list d-flex flex-wrap flex-row justify-content-around">
+            {% for product in products %}
+                <a href="{% url 'product_detail' product.pk %}" class="product-item card text-decoration-none text-black">
+                    <img src="{{ product.images.all.0.image.url }}" class="card-img-top" alt="{{ product.images.all.0.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.price }} руб.</h5>
+                        <p class="card-text text-black-50 small text-truncate">{{ product.title }} / {{ product.category.title }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h2 class="text-center mt-3">По результатам поиска ничего не найдено</h2>
+    {% endif %}
+{% endblock content %}

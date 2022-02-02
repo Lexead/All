@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+    <h1>Ваш заказ</h1>
+    <ul class="list-unstyled">
+        {% for item in cart %}
+        <li>{% with item.product as product %}
+            <a class="text-decoration-none" href="{% url 'product_detail' product.pk %}">
+                <img src="{{ product.images.all.0.image.url }}" style="object-fit:contain" width="100" height="100">
+            </a>
+            {% endwith %} {{item.price}} BYN <i>x{{item.quantity}}</i> = {{ item.total_price }} BYN</li>
+        {% endfor %}
+    </ul>
+    <p><strong>Общая стоимость {{ cart.get_total_price }} BYN</strong><p>
+    <form action="." style="width: 15em;" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-primary my-1" type="submit" value="Заказать">
+    </form>
+{% endblock %}
