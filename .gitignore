@@ -49,4 +49,6 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-/.vscode
+#VSCode
+.vscode
+!.vscode/launch.json
