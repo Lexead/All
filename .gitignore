@@ -52,4 +52,4 @@ docs/_build/
 
 #VSCode
 .vscode
-!.vscode/launch.json
+.vscode/launch.json
